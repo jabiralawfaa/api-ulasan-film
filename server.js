@@ -14,7 +14,7 @@ let reviews = [
     }
 ];
 
-let sequenceID = 2;
+
 
 app.get('/', (req,res) => {
    res.send('Selamat Datang di hasil kerja kami\nTIM 7\nDINO\nJABIR\nCHERYL')
@@ -35,14 +35,26 @@ app.get('/', (req,res) => {
  });
 
  app.post('/reviews', (req, res) => {
-    const {film_id, user, rating, comment} = req.body;
+    const { film_id, user, rating, comment } = req.body;
 
     if (!film_id || !user || !rating || !comment) {
         return res.status(400).send('Semua field harus diisi!');
     }
 
+    // 🔥 CARA BENAR: CARI ID TERKECIL YANG BELUM DIGUNAKAN
+    const existingIds = reviews.map(r => r.id).sort((a, b) => a - b);
+    let nextId = 1;
+
+    for (let id of existingIds) {
+        if (id === nextId) {
+            nextId++;
+        } else {
+            break; // ketemu celah!
+        }
+    }
+
     const newReview = {
-        id: sequenceID++,
+        id: nextId, // ← INI AKAN SELALU 1, 2, 3, ... TANPA CECAH
         film_id,
         user,
         rating,
@@ -63,7 +75,7 @@ app.get('/', (req,res) => {
 
     reviews.push(newReview);
     res.status(201).json(newReview);
- });
+});
 
  app.delete('/reviews/:id', (req, res) => {
     const reviewIndex = reviews.findIndex(r => r.id === parseInt(req.params.id));
