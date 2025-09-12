@@ -53,6 +53,16 @@ app.get('/', (req,res) => {
     res.status(201).json(newReview);
  });
 
+ app.delete('/reviews/:id', (req, res) => {
+    const reviewIndex = reviews.findIndex(r => r.id === parseInt(req.params.id));
+    if (reviewIndex !== -1) {
+        reviews.splice(reviewIndex, 1);
+        res.status(204).send();
+    } else {
+        res.status(404).send('Review not found');
+    }
+ });
+
  app.listen(port, () => {
      console.log(`Server Running on ${port}`);
  });
