@@ -19,7 +19,7 @@ app.get('/', (req,res) => {
     });
 
    app.get('/reviews', (req, res) => {
-    res.json(directors);
+    res.json(reviews);
  });
 
 
@@ -32,3 +32,6 @@ app.get('/', (req,res) => {
      }
  });
 
+ app.listen(port, () => {
+     console.log(`Server Running on ${port}`);
+ });
