@@ -14,6 +14,8 @@ let reviews = [
     }
 ];
 
+let sequenceID = 2;
+
 app.get('/', (req,res) => {
    res.send('Selamat Datang diserver Node.js')
     });
@@ -30,6 +32,25 @@ app.get('/', (req,res) => {
      } else {
          res.status(404).send('Film not found');
      }
+ });
+
+ app.post('/reviews', (req, res) => {
+    const {film_id, user, rating, comment} = req.body;
+
+    if (!film_id || !user || !rating || !comment) {
+        return res.status(400).send('Semua field harus diisi!');
+    }
+
+    const newReview = {
+        id: sequenceID++,
+        film_id,
+        user,
+        rating,
+        comment
+    };
+
+    reviews.push(newReview);
+    res.status(201).json(newReview);
  });
 
  app.listen(port, () => {
