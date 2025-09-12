@@ -17,7 +17,7 @@ let reviews = [
 let sequenceID = 2;
 
 app.get('/', (req,res) => {
-   res.send('Selamat Datang diserver Node.js')
+   res.send('Selamat Datang di hasil kerja kami\nTIM 7\nDINO\nJABIR\nCHERYL')
     });
 
    app.get('/reviews', (req, res) => {
