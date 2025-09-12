@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const port = 3300;
 
@@ -16,11 +17,9 @@ let reviews = [
 
 let sequenceID = 2;
 
-
-
-app.get('/', (req,res) => {
-   res.send('Selamat Datang di hasil kerja kami\nTIM 7\nDINO\nJABIR\nCHERYL')
-    });
+app.get('/', (req, res) => {
+   res.sendFile(path.join(__dirname, 'index.html'));
+});
 
    app.get('/reviews', (req, res) => {
     res.json(reviews);

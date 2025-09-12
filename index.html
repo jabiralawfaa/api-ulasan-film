@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        h1, h2 { color: #333; }
+        pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; }
+        code { font-family: Consolas, monaco, monospace; }
+        .endpoint { border-left: 4px solid #007BFF; padding-left: 15px; margin-bottom: 20px; }
+        .method { font-weight: bold; color: #28a745; }
+    </style>
+</head>
+<body>
+    <h1>API Ulasan Film</h1>
+    <p>Selamat datang di dokumentasi API ulasan film. API ini memungkinkan Anda untuk mengelola ulasan film.</p>
+
+    <h2>Endpoints</h2>
+
+    <div class="endpoint">
+        <p><span class="method">GET</span> <code>/</code></p>
+        <p>Menampilkan halaman dokumentasi ini.</p>
+    </div>
+
+    <div class="endpoint">
+        <p><span class="method">GET</span> <code>/reviews</code></p>
+        <p>Mendapatkan semua ulasan film.</p>
+        <p><strong>Contoh Respon:</strong></p>
+        <pre><code>
+[
+    {
+        "id": 1,
+        "film_id": "86e544fd-79de-4e04-be62-5be67d8dd92e",
+        "user": "Andi",
+        "rating": 5,
+        "comment": "Film animasi terbaik sepanjang masa!"
+    }
+]
+        </code></pre>
+    </div>
+
+    <div class="endpoint">
+        <p><span class="method">GET</span> <code>/reviews/:id</code></p>
+        <p>Mendapatkan ulasan film berdasarkan ID.</p>
+        <p><strong>Parameter:</strong></p>
+        <ul>
+            <li><code>id</code> (integer): ID unik dari ulasan.</li>
+        </ul>
+        <p><strong>Contoh Respon:</strong></p>
+        <pre><code>
+{
+    "id": 1,
+    "film_id": "86e544fd-79de-4e04-be62-5be67d8dd92e",
+    "user": "Andi",
+    "rating": 5,
+    "comment": "Film animasi terbaik sepanjang masa!"
+}
+        </code></pre>
+    </div>
+
+    <div class="endpoint">
+        <p><span class="method">POST</span> <code>/reviews</code></p>
+        <p>Membuat ulasan baru.</p>
+        <p><strong>Body Request:</strong></p>
+        <pre><code>
+{
+    "film_id": "string",
+    "user": "string",
+    "rating": "integer",
+    "comment": "string"
+}
+        </code></pre>
+        <p><strong>Contoh Respon:</strong></p>
+        <pre><code>
+{
+    "id": 2,
+    "film_id": "...",
+    "user": "...",
+    "rating": "...",
+    "comment": "..."
+}
+        </code></pre>
+    </div>
+
+    <div class="endpoint">
+        <p><span class="method">PUT</span> <code>/reviews/:id</code></p>
+        <p>Memperbarui ulasan yang sudah ada.</p>
+        <p><strong>Parameter:</strong></p>
+        <ul>
+            <li><code>id</code> (integer): ID unik dari ulasan.</li>
+        </ul>
+        <p><strong>Body Request:</strong></p>
+        <pre><code>
+{
+    "film_id": "string",
+    "user": "string",
+    "rating": "integer",
+    "comment": "string"
+}
+        </code></pre>
+    </div>
+
+    <div class="endpoint">
+        <p><span class="method">DELETE</span> <code>/reviews/:id</code></p>
+        <p>Menghapus ulasan.</p>
+        <p><strong>Parameter:</strong></p>
+        <ul>
+            <li><code>id</code> (integer): ID unik dari ulasan.</li>
+        </ul>
+    </div>
+
+</body>
+</html>
