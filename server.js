@@ -49,6 +49,18 @@ app.get('/', (req,res) => {
         comment
     };
 
+    app.put('/reviews/:id', (req,res) =>{
+        const id = parseInt(req.params.id);
+        const reviewIndex = reviews.findIndex(r => r.id === id);
+        if (reviewIndex===-1) {
+            return res.status(404).json({error: 'Review tidak ditemukan'});
+        }
+        const { film_id, user, rating, comment} = req.body || {};
+        const updateReview = {id, film_id, user, rating, comment};
+        reviews[reviewIndex] = updateReview;
+        res.json(updateReview);
+    })
+
     reviews.push(newReview);
     res.status(201).json(newReview);
  });
